@@ -42,17 +42,15 @@ function set_image_size() {
         // At the moment are only one value for margin
         var margin = parseInt(dataConf.marginbody, 10) * 2;
 
-        // ï¿½APAQUI
+        // ÑAPAQUI
         // Redimensionar correctamente la imagen
         //$("#txtPrueba").val("hoal");
         //$("#txtPrueba").val("H:" + $('#imgHome').outerHeight() + " - W: " + $('#imgHome').outerWidth());
         //alert($('#imgHome').height() + " - " + $('#imgHome').width());
-		
         $('#imgHome').height($(window).height() - margin); // less margin top and bottom
         $('#imgHome').width($(window).width() - margin); // less margin left and right
-		
-        // $('#imgHome').css("height","auto");
-        // --> Esto ajusta el tamaï¿½o, pero deja la imagen ajustada a la pantalla y se expande por un lado
+        //$('#imgHome').css("height","auto");
+        // --> Esto ajusta el tamaño, pero deja la imagen ajustada a la pantalla y se expande por un lado
         // --> Lo mejor es dejar proporcionada la imagen
     }
     catch (ex)
@@ -77,7 +75,7 @@ function get_image_size() {
 
 /*INI::Funciones Iconos */
 
-/*  INI::Funciones Colocaciï¿½n Iconos */
+/*  INI::Funciones Colocación Iconos */
 
 /**
  * Pintamos los iconos
@@ -162,9 +160,9 @@ function relocate_dataIco() {
 }
 
 /**
- * Devuelve la posiciï¿½n de un icono que tiene que tener
+ * Devuelve la posición de un icono que tiene que tener
  * Traduce coordenadas 2000*1000 a lo que mide realmente la imagen central
- * Se corrige si con el tamaï¿½o del icono se sale fuera
+ * Se corrige si con el tamaño del icono se sale fuera
  * @param {any} oIco
  */
 function get_ico_position(oIco) {
@@ -197,7 +195,7 @@ function get_ico_position(oIco) {
     var iLeft = iTempLeft + margin + 1 - (iIcoWidth / 2);
     var iTop = iTempTop + margin + 1 - (iIcoHeight / 2);
 
-    // Correcciï¿½n de la posiciï¿½n si estï¿½ fuera de la imagen central (pantalla)
+    // Corrección de la posición si está fuera de la imagen central (pantalla)
     var oImgHome = $('#imgHome').position();
 
     if (iLeft <= oImgHome.left + (iIcoWidth / 2))
@@ -216,9 +214,9 @@ function get_ico_position(oIco) {
 }
 
 /**
- * Devuelve la posiciï¿½n de un <area> que tiene que tener
+ * Devuelve la posición de un <area> que tiene que tener
  * Traduce coordenadas 2000*1000 a lo que mide realmente la imagen central
- * No se tiene en cuenta si sale de la pantalla. Las <areas> no aplican aumento, sï¿½lo muestra su "border"
+ * No se tiene en cuenta si sale de la pantalla. Las <areas> no aplican aumento, sólo muestra su "border"
  * @param {any} oIco
  */
 function get_map_position(oIco) {
@@ -242,14 +240,14 @@ function get_map_position(oIco) {
 }
 
 /**
- * Pinta la acciï¿½n que se ejecutarï¿½ en el evento onclick de icono o del <area>
+ * Pinta la acción que se ejecutará en el evento onclick de icono o del <area>
  * @param {any} oIco
  */
 function get_action_click(oIco) {
     
     var sClick = "";
 
-    // ï¿½APA AVISO
+    // ÑAPA AVISO
     // REVISAR CON FUNCTION EN MAP
 
     //if (oIco.type == "img") {
@@ -288,7 +286,7 @@ function get_action_click(oIco) {
 
 }
 
-/*  FIN::Funciones Colocaciï¿½n Iconos */
+/*  FIN::Funciones Colocación Iconos */
 
 /*  INI::Funciones Eventos Iconos */
 
@@ -309,7 +307,7 @@ function resize_ico_out(sId) {
 }
 
 /**
- * Redimensiona el icono a la proporciï¿½n definida (1=Tamaï¿½o Normal)
+ * Redimensiona el icono a la proporción definida (1=Tamaño Normal)
  * @param {any} sId
  * @param {any} constBigger
  */
@@ -320,7 +318,7 @@ function resize_ico(sId, constBigger) {
     var iIcoHeight = parseInt(oIco.height, 10);
 
     $('#img_' + oIco.id).css({ "width": (iIcoWidth * constBigger), "height": (iIcoHeight * constBigger) });
-    // css en una lï¿½nea
+    // css en una línea
     $('#img_' + oIco.id).css('top', get_ico_position(oIco).iTop + 'px');
     $('#img_' + oIco.id).css('left', get_ico_position(oIco).iLeft + 'px');
 }
@@ -383,22 +381,23 @@ function show_map_border(sId) {
 
 /*INI:Funciones de Objetos */
 
-/*  INI:Funciones de Objetos - Bï¿½squeda */
+/*  INI:Funciones de Objetos - Búsqueda */
 
 /**
- * Esta funciï¿½n es la principal de la bï¿½squeda
- * al pasar el ratï¿½n sobre el resultado
+ * Esta función es la principal de la búsqueda
+ * al pasar el ratón sobre el resultado
  * @param {any} sId
  */
-function result_search_over(sId)
+function result_search_over(sIdDiv, sId)
 {
-    // Resaltar la lï¿½nea 
-    helpfinder_line_over(sId);
-
+    // console.log('result_search_over::' + sIdDiv + "-" + sId);
+    // Resaltar la línea 
+    helpfinder_line_over(sIdDiv);
+    // console.log('result_search_over::' + sId);
     var oIco = get_item_array(sId)[0];
 
     if (oIco.type == "img") {
-        // Aumentar tamaï¿½o del icono
+        // Aumentar tamaño del icono
         resize_ico_over(sId);
         // Mostrar los <div> como diana
         show_diana_divs(sId);
@@ -411,20 +410,20 @@ function result_search_over(sId)
 }
 
 /**
- * Esta funciï¿½n es la principal de la bï¿½squeda
- * al salir el ratï¿½n del resultado
+ * Esta función es la principal de la búsqueda
+ * al salir el ratón del resultado
  * @param {any} sId
  */
-function result_search_out(sId)
+function result_search_out(sIdDiv, sId)
 {
-    // Quitar el 'resalto' a la lï¿½neacomb
-    helpfinder_line_out(sId);
+    // Quitar el 'resalto' a la líneacomb
+    helpfinder_line_out(sIdDiv);
 
     var oIco = get_item_array(sId)[0];
 
     if (oIco.type == "img")
     {
-        // Icono a tamaï¿½o normal
+        // Icono a tamaño normal
         resize_ico_out(sId, 1);
         // Quitar el <div> diana
         hide_div_border(sId);
@@ -437,7 +436,7 @@ function result_search_out(sId)
 }
 
 /**
- * Resalta la lï¿½nea del resultado de la bï¿½squeda
+ * Resalta la línea del resultado de la búsqueda
  * @param {any} sId
  */
 function helpfinder_line_over(sId) {
@@ -450,7 +449,7 @@ function helpfinder_line_over(sId) {
 }
 
 /**
- * Quita el 'resalto' del resultado de la bï¿½squeda
+ * Quita el 'resalto' del resultado de la búsqueda
  * @param {any} sId
  */
 function helpfinder_line_out(sId) {
@@ -461,6 +460,22 @@ function helpfinder_line_out(sId) {
     {
         alert_paginicio("helpfinder_line_out", ex);
     }
+}
+
+function dblClick_item_search(sId) {
+
+    // ÑAPAQUI
+
+    console.log("dblClick_item_search::1::" + sId);
+
+    // var oIco = get_item_array(sId)[0];
+
+    // console.log(oIco);
+
+    // $("a").trigger("click");
+    // console.log($("#img_" + sId));
+    $("#img_" + sId).trigger("click");
+
 }
 
 /**
@@ -484,7 +499,7 @@ function search_keypress(evt) {
 }
 
 /**
- * Realiza la bï¿½squeda entre los iconos
+ * Realiza la búsqueda entre los iconos
  * @param {any} evt
  */
 function search_keyup(evt) {
@@ -497,35 +512,108 @@ function search_keyup(evt) {
 
         $('#divSearchResult').empty();
 
-        var arrText = sText.split(' ');
-
-        var sNameIco = "";
         var sIdIco = "";
         for (var a = 0; a < dataIco.length; a++) {
             sIcoName = dataIco[a].name.toUpperCase();
             sIdIco = dataIco[a].id;
 
-            for (var b = 0; b < arrText.length; b++) {
-                if (arrText[b] != '') {
-                    if (sIcoName.indexOf(arrText[b]) != -1) {
-                        // Is in the result
+            if (sIcoName.indexOf(sText) != -1) {
+                // Is in the result
 
-                        if ($('#divResult_' + sIdIco).length == 0) {
-                            $('#divSearchResult').append('<div id="divResult_' + sIdIco + '" class="resultSearch">' + dataIco[a].name + '</div>');
+                // if ($('#divResult_' + sIdIco).length == 0) {
+                    $('#divSearchResult').append('<div id="divResult_' + sIdIco + '" class="resultSearch">' + dataIco[a].name + '</div>');
 
-                            $('#divResult_' + sIdIco).attr('onmouseover', "result_search_over('" + sIdIco + "');"); // bigger
-                            $('#divResult_' + sIdIco).attr('onmouseout', "result_search_out('" + sIdIco + "');"); // regular
+                $('#divResult_' + sIdIco).attr('onmouseover', "result_search_over('" + sIdIco + "', " + sIdIco + ");"); // bigger
+                $('#divResult_' + sIdIco).attr('onmouseout', "result_search_out('" + sIdIco + "'," + sIdIco + ");"); // regular
+                // $('#divResult_' + sIdIco).attr('dblclick', "dblClick_item_search(" + sIdIco + ");"); // regular
+                $('#divResult_' + sIdIco).on('dblclick', { icoId: sIdIco }, function (event) {
+                    // console.log("Icos::1::" + sIdIco);
+                    // var data = event.data;
+                    dblClick_item_search(event.data.icoId);
+                });
+                // dblclick
+                // }
+                // console.log("Icos::2::" + sIdIco);
+            }
+        }
+
+        // "action": "show_combo_data('programacion');",
+
+        //console.log("------------------------------------------------------------------------");
+        for (var b = 0; b < dataCombos.length; b++) {
+            if (dataCombos[b].comboid != "help") {
+                for (var c = 0; c < dataCombos[b].combocoleccion.length; c++) {
+                    if (dataCombos[b].combocoleccion[c].text.toUpperCase().indexOf(sText) != -1) {
+                        var sIdComboItem = dataCombos[b].comboid + "_" + dataCombos[b].combocoleccion[c].orden;
+                        sIdIco = "";
+                        for (var d = 0; d < dataIco.length; d++) {
+                            if (dataIco[d].action.indexOf(dataCombos[b].comboid) != -1) {
+                                if (dataIco[d].active == "Y")
+                                    sIdIco = dataIco[d].id;
+
+                                break;
+                            }
+                        }
+
+                        // if ($('#divResult_' + sIdComboItem).length == 0) {
+                        if (sIdIco != "") { 
+
+                            $('#divSearchResult').append('<div id="divResult_' + sIdComboItem + '" class="resultSearch">' + dataCombos[b].comboname + ' (' + dataCombos[b].combocoleccion[c].text + ')</div>');
+
+                            $('#divResult_' + sIdComboItem).attr('onmouseover', "result_search_over('" + sIdComboItem + "'," + sIdIco + ");"); // bigger
+                            $('#divResult_' + sIdComboItem).attr('onmouseout', "result_search_out('" + sIdComboItem + "'," + sIdIco + ");"); // regular
+                            // $('#divResult_' + sIdComboItem).attr('dblclick', "dblClick_item_search(" + sIdIco + ");"); // regular
+                            $('#divResult_' + sIdComboItem).on('dblclick', { icoId: sIdIco }, function (event) {
+                                // console.log("Combos::1::" + sIdIco + " - " + sIdComboItem);
+                                // var data = event.data;
+                                dblClick_item_search(event.data.icoId);
+                            });
                         }
                     }
-
                 }
             }
         }
     }
-
 }
+//function search_keyup(evt) {
 
-/*  FIN:Funciones de Objetos - Bï¿½squeda */
+//    var sText = $('#txtSearch').val().toUpperCase();
+
+//    $('#divSearchResult').empty();
+
+//    if (sText.length > 1) {
+
+//        $('#divSearchResult').empty();
+
+//        var arrText = sText.split(' ');
+
+//        var sNameIco = "";
+//        var sIdIco = "";
+//        for (var a = 0; a < dataIco.length; a++) {
+//            sIcoName = dataIco[a].name.toUpperCase();
+//            sIdIco = dataIco[a].id;
+
+//            for (var b = 0; b < arrText.length; b++) {
+//                if (arrText[b] != '') {
+//                    if (sIcoName.indexOf(arrText[b]) != -1) {
+//                        // Is in the result
+
+//                        if ($('#divResult_' + sIdIco).length == 0) {
+//                            $('#divSearchResult').append('<div id="divResult_' + sIdIco + '" class="resultSearch">' + dataIco[a].name + '</div>');
+
+//                            $('#divResult_' + sIdIco).attr('onmouseover', "result_search_over('" + sIdIco + "');"); // bigger
+//                            $('#divResult_' + sIdIco).attr('onmouseout', "result_search_out('" + sIdIco + "');"); // regular
+//                        }
+//                    }
+
+//                }
+//            }
+//        }
+//    }
+
+//}
+
+/*  FIN:Funciones de Objetos - Búsqueda */
 
 /*  INI:Funciones de Objetos - Combo Help (Listado) */
 
@@ -536,31 +624,31 @@ function search_keyup(evt) {
 
 /**
  * Crea los combos de colecciones de datos si los hubiera
- * Crea el combo de Help (Listado) como mï¿½nimo
+ * Crea el combo de Help (Listado) como mínimo
  */
 function paint_combos() {
     try {
 
         if (dataCombos.length > 0) {
 
-            // Hay colecciï¿½n de combos
+            // Hay colección de combos
             // Se devuelven las colecciones activas
             // El <select> tiene "display:none" debido a que cuando se pintan
             // se ven en pantalla un momento y "desaparecen" (por el z-index)
             for (var a = 0; a < dataCombos.length; a++) {
                 // text-overflow: ellipsis
-                // --> Hace que el texto de una opciï¿½n, si es muy largo, se vea sï¿½lo
-                //     completo cuando se despliega y mantiene su tamaï¿½o normal
+                // --> Hace que el texto de una opción, si es muy largo, se vea sólo
+                //     completo cuando se despliega y mantiene su tamaño normal
                 var comboData = $("<select style='display:none;width:100%;text-overflow: ellipsis;'></select>").attr("id", "cmb" + dataCombos[a].comboid).attr("size", dataCombos[a].combosize).attr("ondblclick", "window.open(this.value)");
 
                 //dataCombos[a].combocoleccion.sort(orderByOrdenComboData);
-                // --> Ordenaciï¿½n por el nï¿½ de orden
+                // --> Ordenación por el nº de orden
                 dataCombos[a].combocoleccion.sort(orderByTextComboData);
-                // --> Ordenaciï¿½n por el texto
+                // --> Ordenación por el texto
 
                 $.each(dataCombos[a].combocoleccion, function (i, el) {
-                    // ï¿½APAVISO
-                    // Intentar recuperar la colecciï¿½n filtrada directamente
+                    // ÑAPAVISO
+                    // Intentar recuperar la colección filtrada directamente
                     // usando LINQ a otro objeto 
                     if(el.active == "Y")
                         comboData.append("<option value='" + el.value + "'>" + el.text + "</option>");
@@ -571,14 +659,14 @@ function paint_combos() {
         }
 
         // Un combo por defecto tiene que ser el de todos los iconos
-        // los hacemos despuï¿½s para aï¿½adirlo en la colecciï¿½n de datos de combos y actï¿½e como todos
+        // los hacemos después para añadirlo en la colección de datos de combos y actúe como todos
         var objHelpCombo = { "comboid": "help", "comboname": "Ayuda", "combodescripcion": "Listado de todas las opciones", "comboactive": "Y", "combosize": 3 };
 
         dataCombos.push(objHelpCombo);
 
         var comboHelp = $("<select style='display:none;width:100%;text-overflow: ellipsis;' onmouseout='combo_help_out(this.value);' onclick='combo_help_click(this.value);' size='" + objHelpCombo.combosize + "'></select>").attr("id", "cmbhelp"); //.attr("name", "cmbhelp");
         // var comboHelp = $("<select></select>").attr("id", "cmbhelp").attr("name", "cmbhelp");
-        // --> en jQuery se pueden aï¿½adir varios atributos al mismo tiempo
+        // --> en jQuery se pueden añadir varios atributos al mismo tiempo
 
         dataIco.sort(orderByNameComboHelp);
 
@@ -597,7 +685,7 @@ function paint_combos() {
 
 
 /**
- * Funciï¿½n estandar para cualquier combo de datos definido
+ * Función estandar para cualquier combo de datos definido
  * Muestra/Oculta el mismo combo (mismo icono) o cambia el combo si es otro icono
  * Ejemplo de como llamarla en "data.js" "action": "show_combo_data('utiles');",
  * @param {any} sId
@@ -611,20 +699,20 @@ function show_combo_data(sId) {
         }
         else {
             // Es otro ico
-            $("#spTitleComboBox").text(dataCombos.find(x => x.comboid == sId).comboname);
+            $("#spTitleComboBox").html(dataCombos.find(x => x.comboid == sId).comboname);
             // --> Por LINQ ponemos el texto del combo con el nombre del combo
 
             $("#divComboBoxResult").children("select").css("display", "none");
             // ---> El combo actual lo ocultamos
             $("#theBody").append($("#divComboBoxResult").children("select"));
-            // --> Quitamos el <select> del <div> "divComboBoxResult" y lo volvemos a aï¿½adir al <body>
+            // --> Quitamos el <select> del <div> "divComboBoxResult" y lo volvemos a añadir al <body>
             $("#divComboBoxResult").append($("#cmb" + sId));
-            // --> Al <div> "divComboBoxResult" le aï¿½adimos el combo seleccionado
+            // --> Al <div> "divComboBoxResult" le añadimos el combo seleccionado
             $("#cmb" + sId).css("display", "block");
             // ---> Mostramos el combo
 
-            // Tenemos que modificar el tamaï¿½o del div para help y el resto
-            // Usamos LINQ sobre la colecciï¿½n "dataCombos" y obtenemos el tamaï¿½o
+            // Tenemos que modificar el tamaño del div para help y el resto
+            // Usamos LINQ sobre la colección "dataCombos" y obtenemos el tamaño
             switch (dataCombos.find(x => x.comboid == sId).combosize) {
                 case 1:
                     // Todos los combos menos el de Help
@@ -676,7 +764,7 @@ function combo_help_out(sId)
     var oIco = get_item_array(sId)[0];
 
     if (oIco.type == "img") {
-        // Icono a tamaï¿½o normal
+        // Icono a tamaño normal
         resize_ico_out(sId, 1);
         // Quitar el <div> diana
         hide_div_border(sId);
@@ -693,7 +781,7 @@ function combo_help_click(sId) {
     var oIco = get_item_array(sId)[0];
 
     if (oIco.type == "img") {
-        // Aumentar tamaï¿½o del icono
+        // Aumentar tamaño del icono
         resize_ico_over(sId);
         // Mostrar los <div> como diana
         show_diana_divs(sId);
@@ -712,7 +800,7 @@ function combo_help_click(sId) {
 
 
 /*
-INI::Funciones Coordenadas del ratï¿½n a escala 2000 * 1000
+INI::Funciones Coordenadas del ratón a escala 2000 * 1000
 */
 
 /**
@@ -737,7 +825,7 @@ function text_box_coordinates()
 }
 
 /**
- * Calcula la la posiciï¿½n 2000 * 1000 en base a la posiciï¿½n del ratï¿½n
+ * Calcula la la posición 2000 * 1000 en base a la posición del ratón
  * @param {any} event
  */
 function get_mouse_coordinates(event) {
@@ -779,7 +867,7 @@ function get_mouse_coordinates(event) {
 }  
 
 /*
-FIN::Funciones Coordenadas del ratï¿½n a escala 2000 * 1000
+FIN::Funciones Coordenadas del ratón a escala 2000 * 1000
 */
 
 
@@ -869,7 +957,7 @@ FIN::Funciones De miniaturas de los iconos
 */
 
 
-/* INI::Funciones Ordenaciï¿½n */
+/* INI::Funciones Ordenación */
 
 /**
  * Ordena todos los iconos por nombres
@@ -888,7 +976,7 @@ function orderByNameComboHelp(a, b)
 
 /**
  * Ordena los datos de las colecciones
- * para los combos por su nï¿½mero de orden
+ * para los combos por su número de orden
  * @param {any} a
  * @param {any} b
  */
@@ -903,7 +991,7 @@ function orderByOrdenComboData(a, b) {
 /**
  * Ordena por el texto del combo (Nombre)
  * OJO: Es case sensitive y primero van ordenadas las
- * mayï¿½sculas y luego las minï¿½sculas
+ * mayúsculas y luego las minúsculas
  * @param {any} a
  * @param {any} b
  */
@@ -917,7 +1005,7 @@ function orderByTextComboData(a, b) {
     
 }
 
-/* FIN::Funciones Ordenaciï¿½n */
+/* FIN::Funciones Ordenación */
 
 
 /* INI::Funciones Utiles */
@@ -927,7 +1015,7 @@ function orderByTextComboData(a, b) {
  */
 function get_item_array(sId) {
 
-    // se podrï¿½a usar "filter" en lugar de "grep":
+    // se podría usar "filter" en lugar de "grep":
     //  The filter function is intended to be used with html elements, and that is why it is a chainable function
     //  that returns a jQuery object and it accepts filters like ":even", ":odd" or ":visible" etc.You can't do that
     //  with the grep function, which is intended to be a utility function for arrays. 
@@ -961,7 +1049,7 @@ function alert_paginicio(sMethod, oEx)
 
 /**
  * Muestra los divs como si fueran una diana
- * Tiene que llevar implï¿½cito que muestre el borde del icono/<area>
+ * Tiene que llevar implícito que muestre el borde del icono/<area>
  * @param {any} sId
  */
 function show_diana_divs(sId) {
